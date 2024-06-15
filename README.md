@@ -22,7 +22,7 @@ sh scripts/run.sh
 
 ### Gráficos
 
-Para todos os gráficos abaixo foi usada como sinal original uma senoide com frequência igual a 20Hz em um deslocamento de fase de *pi/2*.
+Para todos os gráficos abaixo foi usada como sinal original uma senoide com frequência igual a 20Hz e um deslocamento de fase de *pi/2*.
 
 #### Amostragem em 4Hz
 ![Amostragem em 4Hz](imgs/plot_4.png)
