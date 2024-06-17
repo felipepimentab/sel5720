@@ -74,7 +74,7 @@ for sampling_rate in sampling_rates:
     # Plot the FFTs of both waves
     axs[1].plot(freq_axis, np.abs(fft_continuous), label='FFT of Original Sine Wave')
     axs[1].plot(freq_axis, np.abs(fft_reconstructed), label='FFT of Reconstructed Sine Wave', color='orange')
-    axs[1].set_xlim([-100, 100])  # Crop the FFT plot to -100 Hz to 100 Hz
+    axs[1].set_xlim([0, 100])  # Crop the FFT plot to -100 Hz to 100 Hz
     axs[1].set_title('FFT of Original and Reconstructed Sine Waves')
     axs[1].set_xlabel('Frequency (Hz)')
     axs[1].set_ylabel('Magnitude')
@@ -94,7 +94,10 @@ with open(readme_path, 'r') as f:
     readme_content = f.readlines()
 
 # Find the position of the first '---'
-insert_idx = readme_content.index('---') + 1
+insert_idx = readme_content.index('---\n') + 1
+
+# Remove everything after the first '---'
+readme_content = readme_content[:insert_idx]
 
 # Add new lines for each sampling rate
 for sampling_rate in sampling_rates:
@@ -103,8 +106,7 @@ for sampling_rate in sampling_rates:
         f'\n\n![Amostragem em {sampling_rate}Hz](imgs/plot_{sampling_rate}.png)',
         '\n\n---'
     ]
-    readme_content[insert_idx:insert_idx] = new_lines
-    insert_idx += len(new_lines)
+    readme_content.extend(new_lines)
 
 # Write the updated content back to README.md
 with open(readme_path, 'w') as f:
